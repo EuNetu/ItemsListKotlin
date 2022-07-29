@@ -3,12 +3,11 @@ package tads.eaj.ufrn.todolistkotlin.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import tads.eaj.ufrn.todolistkotlin.R
-import tads.eaj.ufrn.todolistkotlin.model.Produto
+import tads.eaj.ufrn.todolistkotlin.dao.ItemsDao
+import tads.eaj.ufrn.todolistkotlin.model.Item
 import java.math.BigDecimal
 
 class FormItemActivity : AppCompatActivity(R.layout.activity_form_item) {
@@ -30,13 +29,16 @@ class FormItemActivity : AppCompatActivity(R.layout.activity_form_item) {
                 BigDecimal(valorString)
             }
 
-            val item = Produto(
+            val novoItem = Item(
                 title = title,
                 descricao = descricao,
                 valor = valor
             )
 
-            Log.i("FormActivity", "$item")
+            Log.i("FormActivity", "$novoItem")
+            val itemsDao = ItemsDao()
+            itemsDao.addItem(novoItem)
+            Log.i("FormActivity", "onCreate: ${itemsDao.getItems()}")
         }
     }
 }

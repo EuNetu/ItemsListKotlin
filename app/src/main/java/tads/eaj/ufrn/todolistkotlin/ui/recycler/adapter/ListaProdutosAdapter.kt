@@ -7,22 +7,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tads.eaj.ufrn.todolistkotlin.R
-import tads.eaj.ufrn.todolistkotlin.model.Produto
+import tads.eaj.ufrn.todolistkotlin.model.Item
 
 class ListaProdutosAdapter(
     private val context: Context,
-    private val produtos : List<Produto>
+    private val items : List<Item>
 ): RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun vincula(produto: Produto) {
+        fun vincula(item: Item) {
             val title = itemView.findViewById<TextView>(R.id.title)
             val descricao = itemView.findViewById<TextView>(R.id.descricao)
             val valor = itemView.findViewById<TextView>(R.id.valor)
 
-            title.text = produto.title
-            descricao.text = produto.descricao
-            valor.text = produto.valor.toPlainString()
+            title.text = item.title
+            descricao.text = item.descricao
+            valor.text = item.valor.toPlainString()
         }
     }
 
@@ -33,9 +33,9 @@ class ListaProdutosAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val produto = produtos[position]
+        val produto = items[position]
         holder.vincula(produto)
     }
 
-    override fun getItemCount(): Int = produtos.size
+    override fun getItemCount(): Int = items.size
 }
