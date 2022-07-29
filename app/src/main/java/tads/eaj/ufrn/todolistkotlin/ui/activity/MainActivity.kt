@@ -12,6 +12,11 @@ import tads.eaj.ufrn.todolistkotlin.ui.recycler.adapter.ListaProdutosAdapter
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         val recycler = findViewById<RecyclerView>(R.id.recyclerviwer)
         val itemsDao = ItemsDao()
 

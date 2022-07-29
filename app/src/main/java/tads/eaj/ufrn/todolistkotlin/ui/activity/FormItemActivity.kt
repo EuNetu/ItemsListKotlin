@@ -39,6 +39,7 @@ class FormItemActivity : AppCompatActivity(R.layout.activity_form_item) {
             val itemsDao = ItemsDao()
             itemsDao.addItem(novoItem)
             Log.i("FormActivity", "onCreate: ${itemsDao.getItems()}")
+            finish()
         }
     }
 }
