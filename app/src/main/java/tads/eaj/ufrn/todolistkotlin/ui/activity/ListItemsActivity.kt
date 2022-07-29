@@ -9,24 +9,31 @@ import tads.eaj.ufrn.todolistkotlin.R
 import tads.eaj.ufrn.todolistkotlin.dao.ItemsDao
 import tads.eaj.ufrn.todolistkotlin.ui.recycler.adapter.ListaProdutosAdapter
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class ListItemsActivity : AppCompatActivity(R.layout.activity_list_items) {
+    val itemsDao = ItemsDao()
+    private val adapter = ListaProdutosAdapter(context = this, itemsDao.getItems())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        configureRecyclerView()
+        configureFAB()
     }
 
     override fun onResume() {
         super.onResume()
-        val recycler = findViewById<RecyclerView>(R.id.recyclerviwer)
-        val itemsDao = ItemsDao()
+        adapter.update(itemsDao.getItems())
+    }
 
-        recycler.adapter = ListaProdutosAdapter(
-            context = this, itemsDao.getItems()
-        )
+    private fun configureFAB() {
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener {
             val intent = Intent(this, FormItemActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun configureRecyclerView() {
+        val recycler = findViewById<RecyclerView>(R.id.recyclerviwer)
+        recycler.adapter = adapter
     }
 }

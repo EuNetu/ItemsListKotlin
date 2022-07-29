@@ -11,8 +11,9 @@ import tads.eaj.ufrn.todolistkotlin.model.Item
 
 class ListaProdutosAdapter(
     private val context: Context,
-    private val items : List<Item>
-): RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
+    items: List<Item>
+) : RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
+    private val items = items.toMutableList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(item: Item) {
@@ -38,4 +39,9 @@ class ListaProdutosAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+    fun update(items: List<Item>) {
+        this.items.clear()
+        this.items.addAll(items)
+        notifyDataSetChanged()
+    }
 }

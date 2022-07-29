@@ -4,11 +4,11 @@ import tads.eaj.ufrn.todolistkotlin.model.Item
 
 class ItemsDao {
 
-    fun addItem(item : Item){
+    fun addItem(item: Item) {
         items.add(item)
     }
 
-    fun getItems() : List<Item>{
+    fun getItems(): List<Item> {
         return items.toList()
     }
 
